@@ -61,27 +61,9 @@ class _HomePageBuilder extends State<_Homepage> {
       currentIndex: 0,
       iconSize: 25.0,
       items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.whatshot),
-          title: new Text(
-            "热门",
-            style: TextStyle(fontSize: 0.0),
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.keyboard_voice),
-          title: new Text(
-            "语音",
-            style: TextStyle(fontSize: 0.0),
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.menu),
-          title: new Text(
-            "更多",
-            style: TextStyle(fontSize: 0.0),
-          ),
-        ),
+        _makeIconAndText(Icons.whatshot,"热门"),
+        _makeIconAndText(Icons.keyboard_voice,"语音"),
+        _makeIconAndText(Icons.menu,"更多"),
       ],
       onTap: (index) {
         switch (index) {
@@ -98,7 +80,14 @@ class _HomePageBuilder extends State<_Homepage> {
       },
     );
   }
-
+  _makeIconAndText(IconData icons,String s){
+    return BottomNavigationBarItem(
+      icon: Icon(icons),
+      title: new Text(s,
+        style: TextStyle(fontSize: 0.0),
+      ),
+    );
+  }
   _getImageIcon() {
     //获取图标
     return new Container(
