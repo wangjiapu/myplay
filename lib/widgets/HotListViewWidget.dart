@@ -11,6 +11,7 @@ class HotListViewWidget extends StatefulWidget {
 }
 
 class _ListView extends State<HotListViewWidget> {
+  static const int MAX_ITEM_NUM=5;
   List<HotPlayInfo> items;
 
   _ListView(){
@@ -24,7 +25,7 @@ class _ListView extends State<HotListViewWidget> {
       itemBuilder: (context, index) {
         return new HotListViewItemWidget(mplayinfo:items[index]);
       },
-      itemCount: 5,
+      itemCount: MAX_ITEM_NUM,
     ));
   }
 }

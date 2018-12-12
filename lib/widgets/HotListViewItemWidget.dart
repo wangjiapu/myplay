@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myplay/beans/HotPlayInfo.dart';
-
-
+import 'package:myplay/pages/PlayPage.dart';
 class HotListViewItemWidget extends StatefulWidget {
   final HotPlayInfo mplayinfo;
 
@@ -28,7 +27,14 @@ class _HotListViewItemWidget extends State<HotListViewItemWidget> {
       padding: EdgeInsets.only(left: 40.0,top: 0.0,right: 40.0,bottom: 0.0),
       child: new Card(
         child: new FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(//跳转到播放界面
+                      builder: (context) => new PlayPage(mPlayInfo: info,),
+                  ),
+              );
+            },
             child: new Padding(
                 padding: new EdgeInsets.all(10.0),
                 child: new Row(

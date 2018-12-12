@@ -4,6 +4,8 @@ import 'package:myplay/widgets/SearchHomeWidget.dart';
 
 void main() => runApp(MyApp());
 
+const String IMAGE_PATH="lib/assets/ic_launcher.png";
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -58,6 +60,7 @@ class _HomePageBuilder extends State<_Homepage> {
 
   _getBottomWidget() {
     return new BottomNavigationBar(
+
       currentIndex: 0,
       iconSize: 25.0,
       items: [
@@ -92,7 +95,7 @@ class _HomePageBuilder extends State<_Homepage> {
     //获取图标
     return new Container(
       width: 100.0,
-      child: Image.asset("lib/assets/ic_launcher.png"),
+      child: Image.asset(IMAGE_PATH),
     );
   }
 }
