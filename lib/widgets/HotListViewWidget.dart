@@ -15,7 +15,8 @@ class _ListView extends State<HotListViewWidget> {
   List<HotPlayInfo> items;
 
   _ListView(){
-    items=new List.generate(10, (i) => HotPlayInfo("胖子行动队","(高清)", 500, i));
+
+    items=new List.generate(10, (i) => HotPlayInfo("胖子行动队","(高清)", "7亿", "7.8"));
   }
 
   @override

@@ -15,6 +15,7 @@ class HotListViewItemWidget extends StatefulWidget {
 
 class _HotListViewItemWidget extends State<HotListViewItemWidget> {
   final HotPlayInfo info;
+
   _HotListViewItemWidget({@required this.info});
 
   @override
@@ -67,7 +68,7 @@ class _HotListViewItemWidget extends State<HotListViewItemWidget> {
     );
   }
 
-  _getPlayCount(int count){
+  _getPlayCount(String count){
     return new Expanded(
         flex:1,
         child: Center(
@@ -83,7 +84,7 @@ class _HotListViewItemWidget extends State<HotListViewItemWidget> {
               ),
               Padding(padding: EdgeInsets.only(left: 5.0)),
               Text(
-                "$count",
+                count,
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 14.0,
