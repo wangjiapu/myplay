@@ -37,7 +37,7 @@ class _PlayPage extends State<PlayPage> {
           children: <Widget>[
             _makePlayImage(),
             PlayInfoWidget(
-              mPlayInfo: new HotPlayInfo("胖子行动队", "高清", "7亿", "8.7"),
+              mPlayInfo: new HotPlayInfo("胖子行动队", "高清", "7亿", 8.7),
             ),
           ],
         ),

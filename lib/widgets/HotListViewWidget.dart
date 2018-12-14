@@ -6,7 +6,7 @@ const int MAX_ITEM_NUM = 5;
 
 class HotListViewWidget extends StatelessWidget {
   final List<HotPlayInfo> items =
-      new List.generate(10, (i) => HotPlayInfo("胖子行动队", "(高清)", "7亿", "7.8"));
+      new List.generate(10, (i) => HotPlayInfo("胖子行动队", "(高清)", "7亿", 8.0));
 
   @override
   Widget build(BuildContext context) {
