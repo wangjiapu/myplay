@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:myplay/beans/HotPlayInfo.dart';
 import 'package:myplay/widgets/PlayInfoWidget.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:video_player/video_player.dart';
 
 class PlayPage extends StatefulWidget {
   final HotPlayInfo mPlayInfo;
 
-  PlayPage({@required this.mPlayInfo});
+  PlayPage({this.mPlayInfo});
 
   @override
   State<StatefulWidget> createState() {
@@ -17,7 +16,6 @@ class PlayPage extends StatefulWidget {
 }
 
 class _PlayPage extends State<PlayPage> {
-  VideoPlayerController beeController;
 
   @override
   void initState() {

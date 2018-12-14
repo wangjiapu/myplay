@@ -1,39 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:myplay/beans/HotPlayInfo.dart';
 import 'package:myplay/pages/PlayPage.dart';
-class HotListViewItemWidget extends StatefulWidget {
-  final HotPlayInfo mplayinfo;
 
-  HotListViewItemWidget({@required this.mplayinfo});
+class HotListViewItemWidget extends StatelessWidget {
+  final HotPlayInfo mPlayInfo;
 
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _HotListViewItemWidget(info:mplayinfo);
-  }
-}
-
-class _HotListViewItemWidget extends State<HotListViewItemWidget> {
-  final HotPlayInfo info;
-
-  _HotListViewItemWidget({@required this.info});
+  HotListViewItemWidget({Key key,this.mPlayInfo}):super(key:key);
 
   @override
   Widget build(BuildContext context) {
-    return _makeCard();
+    return _makeCard(context);
   }
 
-  _makeCard() {
+  _makeCard(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 40.0,top: 0.0,right: 40.0,bottom: 0.0),
       child: new Card(
         child: new FlatButton(
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(//跳转到播放界面
-                      builder: (context) => new PlayPage(mPlayInfo: info,),
-                  ),
+                context,
+                MaterialPageRoute(//跳转到播放界面
+                  builder: (context) => new PlayPage(mPlayInfo: mPlayInfo,),
+                ),
               );
             },
             child: new Padding(
@@ -41,11 +30,10 @@ class _HotListViewItemWidget extends State<HotListViewItemWidget> {
                 child: new Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-
-                    _getClarity(info.name+info.clarity),
+                    _getClarity(mPlayInfo.name+mPlayInfo.clarity),
                     new Padding(padding: EdgeInsets.only(left: 30.0,top: 5.0,
                         right: 30.0,bottom: 5.0)),
-                    _getPlayCount(info.count),
+                    _getPlayCount(mPlayInfo.count),
                   ],
                 )
             )),
