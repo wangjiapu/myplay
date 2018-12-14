@@ -24,7 +24,8 @@ class _PlayInfoWidget extends State<PlayInfoWidget> {
             widget.mPlayInfo.name,
             style: TextStyle(
               color: Colors.black,
-              fontSize: 16.0,
+              fontWeight: FontWeight.w600,
+              fontSize: 17.0,
             ),
           ),
           Padding(
@@ -35,52 +36,98 @@ class _PlayInfoWidget extends State<PlayInfoWidget> {
             padding: EdgeInsets.only(top: 8.0),
           ),
           _makeOtherInfo(widget.mPlayInfo.productionFrom,
-              widget.mPlayInfo.productionTime,widget.mPlayInfo.type),
+              widget.mPlayInfo.productionTime, widget.mPlayInfo.type),
           Padding(
             padding: EdgeInsets.only(top: 5.0),
           ),
+          //
           Text(
             "简介",
             style: TextStyle(
               color: Colors.black,
-              fontSize: 16.0,
+              fontWeight: FontWeight.w600,
+              fontSize: 17.0,
             ),
           ),
+          Padding(
+            padding: EdgeInsets.only(top: 12.0),
+          ),
+          Text(
+            widget.mPlayInfo.introduction,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15.0,
+            ),
+            maxLines: 5,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
+          ),
+          _makeEpisode(widget.mPlayInfo.isPlay),
         ],
       ),
     );
   }
 
-  _makeOtherInfo(String from,String time,String type){
-      return Row(
+  _makeEpisode(String isPlay) {
+    if (isPlay == "电视剧") {
+      return new Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            from,
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16.0,
-            ),
+          Text("剧集"),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
           ),
-          Padding(padding: EdgeInsets.only(left:8.0)),
-          Text(
-            time,
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16.0,
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(left:8.0)),
-          Text(
-            type,
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16.0,
-            ),
+          _PlayListViewWidget(),
+        ],
+      );
+    } else {
+      return new Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("pppp"),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
           ),
         ],
       );
+    }
   }
+
+  _makeOtherInfo(String from, String time, String type) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          from,
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 16.0,
+          ),
+        ),
+        Padding(padding: EdgeInsets.only(left: 8.0)),
+        Text(
+          time,
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 16.0,
+          ),
+        ),
+        Padding(padding: EdgeInsets.only(left: 8.0)),
+        Text(
+          type,
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 16.0,
+          ),
+        ),
+      ],
+    );
+  }
+
   _makeStars(double score) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -131,5 +178,38 @@ class _PlayInfoWidget extends State<PlayInfoWidget> {
         color: Colors.grey,
       );
     }
+  }
+}
+
+class _PlayListViewWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Expanded(
+        child: new ScrollView.builder(
+      itemBuilder: (context, index) {
+        return new _PlayItemWidget();
+      },
+      itemCount: 30,
+    ));
+  }
+}
+
+class _PlayItemWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return _makeCard(context);
+  }
+
+  _makeCard(BuildContext context) {
+    return Padding(
+      child: new Card(
+        child: new FlatButton(
+            onPressed: () {},
+            child: new Padding(
+              padding: new EdgeInsets.all(10.0),
+              child: new Text("19"),
+            )),
+      ),
+    );
   }
 }

@@ -10,6 +10,7 @@ class HotPlayInfo {
   final String productionFrom="内地";//产地
   final String productionTime="2018";//产时
   final String type="喜剧";//类型
+  final String isPlay="电视剧";
 
 
   HotPlayInfo(this.name, this.clarity, this.count, this.score);
