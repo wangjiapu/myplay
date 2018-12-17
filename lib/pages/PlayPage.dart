@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:myplay/beans/HotPlayInfo.dart';
 import 'package:myplay/widgets/PlayInfoWidget.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+import 'package:video_player/video_player.dart';
 
 class PlayPage extends StatefulWidget {
   final HotPlayInfo mPlayInfo;
@@ -16,11 +20,33 @@ class PlayPage extends StatefulWidget {
 }
 
 class _PlayPage extends State<PlayPage> {
+  final VideoPlayerController mPlayController = VideoPlayerController.network(
+      "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4");
+  bool isPlaying = false;
+  final Completer<void> connectedCompleter = Completer<void>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    Future<void> initController(VideoPlayerController controller) async {
+      controller.setLooping(true);
+      controller.setVolume(0.0);
+      controller.play();
+      await connectedCompleter.future;
+      await controller.initialize();
+      if (mounted) setState(() {});
+
+      initController(mPlayController);
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    mPlayController.dispose();
+    super.dispose();
   }
 
   final HotPlayInfo mPlay;
@@ -49,10 +75,9 @@ class _PlayPage extends State<PlayPage> {
     return new Stack(
       children: <Widget>[
         new Center(
-          child: new FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: "https://img0.pconline.com.cn/pconline/1405/30/"
-                  "4844106_img_0232_thumb.jpg"),
+          child: MyVideo(
+            controller: mPlayController,
+          ),
         ),
         Positioned(
           top: 20.0,
@@ -85,14 +110,11 @@ class _PlayPage extends State<PlayPage> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         IconButton(
-          onPressed: () {
-            // print("关闭");
-          },
-          icon: Icon(
-            Icons.play_arrow,
-            color: Colors.white,
-          ),
-        ),
+            onPressed: () {},
+            icon: Icon(
+              Icons.play_arrow,
+              color: Colors.white,
+            )),
         Expanded(
           child: LinearProgressIndicator(
             backgroundColor: Colors.white12,
@@ -120,6 +142,96 @@ class _PlayPage extends State<PlayPage> {
           ),
         )
       ],
+    );
+  }
+}
+
+class MyVideo extends StatelessWidget {
+  final VideoPlayerController controller;
+
+  const MyVideo({Key key, this.controller}) : super(key: key);
+
+  Widget _buildInlineVideo() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+      child: Center(
+        child: AspectRatio(
+          aspectRatio: 3 / 2,
+          child: Hero(
+            tag: controller,
+            child: VideoPlayerLoading(controller),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  build(BuildContext context) {
+   /* Widget fullScreenRoutePageBuilder(BuildContext context,
+        Animation<double> animation, Animation<double> secondaryAnimation) {
+      return _buildFullScreenVideo();
+    }*/
+
+   return SafeArea(
+     top: false,
+     bottom: false,
+     child: Card(
+       child: Column(
+         children: <Widget>[
+           GestureDetector(
+            // onTap: pushFullScreenWidget,
+             child: _buildInlineVideo(),
+           ),
+         ],
+       ),
+     ),
+   );
+  }
+
+
+}
+
+class VideoPlayerLoading extends StatefulWidget {
+  const VideoPlayerLoading(this.controller);
+
+  final VideoPlayerController controller;
+
+  @override
+  _VideoPlayerLoadingState createState() => _VideoPlayerLoadingState();
+}
+
+class _VideoPlayerLoadingState extends State<VideoPlayerLoading> {
+  bool _initialized;
+
+  @override
+  void initState() {
+    super.initState();
+    _initialized = widget.controller.value.initialized;
+    widget.controller.addListener(() {
+      if (!mounted) {
+        return;
+      }
+      final bool controllerInitialized = widget.controller.value.initialized;
+      if (_initialized != controllerInitialized) {
+        setState(() {
+          _initialized = controllerInitialized;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_initialized) {
+      return VideoPlayer(widget.controller);
+    }
+    return Stack(
+      children: <Widget>[
+        VideoPlayer(widget.controller),
+        const Center(child: CircularProgressIndicator()),
+      ],
+      fit: StackFit.expand,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myplay/beans/HotPlayInfo.dart';
 
+
 class PlayInfoWidget extends StatefulWidget {
   final HotPlayInfo mPlayInfo;
 
@@ -13,7 +14,6 @@ class PlayInfoWidget extends StatefulWidget {
 class _PlayInfoWidget extends State<PlayInfoWidget> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Container(
       margin: EdgeInsets.all(20.0),
       child: new Column(
@@ -80,7 +80,7 @@ class _PlayInfoWidget extends State<PlayInfoWidget> {
           Padding(
             padding: EdgeInsets.only(top: 20.0),
           ),
-          _PlayListViewWidget(),
+          // _PlayListViewWidget(),
         ],
       );
     } else {
@@ -181,16 +181,14 @@ class _PlayInfoWidget extends State<PlayInfoWidget> {
   }
 }
 
+
+/*
+播放列表
+ */
 class _PlayListViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Expanded(
-        child: new ScrollView.builder(
-      itemBuilder: (context, index) {
-        return new _PlayItemWidget();
-      },
-      itemCount: 30,
-    ));
+    return _PlayItemWidget();
   }
 }
 
@@ -206,7 +204,6 @@ class _PlayItemWidget extends StatelessWidget {
         child: new FlatButton(
             onPressed: () {},
             child: new Padding(
-              padding: new EdgeInsets.all(10.0),
               child: new Text("19"),
             )),
       ),
