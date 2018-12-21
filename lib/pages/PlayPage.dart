@@ -75,9 +75,10 @@ class _PlayPage extends State<PlayPage> {
     return new Stack(
       children: <Widget>[
         new Center(
-          child: MyVideo(
+          /*child: MyVideo(
             controller: mPlayController,
-          ),
+          ),*/
+          child: Image.network("https://p.pstatp.com/weili/bl/135132100800020625.jpg"),
         ),
         Positioned(
           top: 20.0,

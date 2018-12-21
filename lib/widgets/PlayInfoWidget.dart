@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myplay/beans/HotPlayInfo.dart';
 
-
 class PlayInfoWidget extends StatefulWidget {
   final HotPlayInfo mPlayInfo;
 
@@ -80,7 +79,7 @@ class _PlayInfoWidget extends State<PlayInfoWidget> {
           Padding(
             padding: EdgeInsets.only(top: 20.0),
           ),
-          // _PlayListViewWidget(),
+          _PlayListViewWidget(),
         ],
       );
     } else {
@@ -181,9 +180,8 @@ class _PlayInfoWidget extends State<PlayInfoWidget> {
   }
 }
 
-
 /*
-播放列表
+   电视剧、电影  播放列表
  */
 class _PlayListViewWidget extends StatelessWidget {
   @override
@@ -193,19 +191,51 @@ class _PlayListViewWidget extends StatelessWidget {
 }
 
 class _PlayItemWidget extends StatelessWidget {
+  final List<String> mlist = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10"
+  ];
+  List<Widget> listItem = [];
+
+  _getPlayItem() {
+    for (String s in mlist) {
+      listItem.add(new Container(
+        width: 60.0,
+        child: Card(
+          child: Center(
+            child: GestureDetector(
+              onTap: () {
+                print(s);
+              },
+              child:Text(s),
+            ),
+          ),
+        ),
+      ));
+    }
+    return listItem;
+  }
+
   @override
   Widget build(BuildContext context) {
     return _makeCard(context);
   }
 
   _makeCard(BuildContext context) {
-    return Padding(
-      child: new Card(
-        child: new FlatButton(
-            onPressed: () {},
-            child: new Padding(
-              child: new Text("19"),
-            )),
+    return Container(
+      //margin: EdgeInsets.symmetric(vertical: 12.0),
+      height: 50.0,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: _getPlayItem(),
       ),
     );
   }
