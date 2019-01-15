@@ -92,6 +92,9 @@ class _PlayInfoWidget extends State<PlayInfoWidget> {
             padding: EdgeInsets.only(top: 20.0),
           ),
         ],
+
+
+
       );
     }
   }
