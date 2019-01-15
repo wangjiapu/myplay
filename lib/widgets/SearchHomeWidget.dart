@@ -26,6 +26,8 @@ class _SearchHomeWidget extends State<SearchHomeWidget> {
               style: BorderStyle.solid,
             ),
             borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+
+
           ),
         ),
       ),
