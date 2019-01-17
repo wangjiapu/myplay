@@ -17,6 +17,7 @@ class _SearchHomeWidget extends State<SearchHomeWidget> {
         onTap: (){
           print("点解了搜索按钮");
         },
+
         child: Container(
           child: _getTextSearch(),
           decoration: BoxDecoration(
