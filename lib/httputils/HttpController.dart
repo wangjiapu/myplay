@@ -1,7 +1,6 @@
+import 'package:myplay/beans/MovieInfo.dart';
+import 'package:myplay/httputils/api.dart';
 import 'package:rxdart/rxdart.dart';
-
-import 'httputils/api.dart';
-import 'beans/MovieInfo.dart';
 
 
 class RequestMap{

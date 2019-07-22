@@ -16,11 +16,19 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
+
   transparent_image: ^0.1.0
+
   video_player: ^0.8.0
+
   rxdart: ^0.18.1
+
   fluttertoast: ^3.0.3
+
   dio: ^2.1.0
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
